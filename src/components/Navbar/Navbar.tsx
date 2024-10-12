@@ -484,7 +484,6 @@ const Navbar: React.FC<NavbarProps> = ({ hours,
 
                     <ListSubheader sx={{ fontFamily: "Reggae One", fontSize: 13, ml: 0.5 }}>兵庫県</ListSubheader>
                     <MenuItem value={"神戸市"} sx={{ fontFamily: "Reggae One" }} onClick={() => spotClose()}>神戸市</MenuItem>
-                    <MenuItem value={"神戸市以外"} sx={{ fontFamily: "Reggae One" }} onClick={() => spotClose()}>神戸市以外</MenuItem>
 
                     <ListSubheader sx={{ fontFamily: "Reggae One", fontSize: 13, ml: 0.5 }}>その他</ListSubheader>
                     <MenuItem value={"京都府"} sx={{ fontFamily: "Reggae One" }} onClick={() => spotClose()}>京都府</MenuItem>

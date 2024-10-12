@@ -33,6 +33,7 @@ const Start: React.FC <StartProps> = ({ setHours,
   };
 
   return (
+    <div style={{position: 'fixed'}}>
       <Box
         sx={{
           position: 'relative',
@@ -45,7 +46,6 @@ const Start: React.FC <StartProps> = ({ setHours,
           backgroundSize: 'cover',
           backgroundPosition: 'center',
           backgroundRepeat: 'no-repeat',
-          overflowY: 'hidden'
         }}
       >
         <Box 
@@ -164,6 +164,7 @@ const Start: React.FC <StartProps> = ({ setHours,
           </Button>
         </Stack>
       </Box>
+    </div>
   )
 }
 

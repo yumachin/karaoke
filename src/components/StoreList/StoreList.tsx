@@ -430,12 +430,18 @@ const StoreList: React.FC<StoreListProps> = ({ hours,
 															</Stack>
 															<Box sx={{ display: 'flex', flexDirection: 'column', zIndex: '1' }}>
 																<CardContent >
-																	<Typography 
-																		variant="body1" 
-																		sx={{fontWeight: 'bold'}}
-																	>
-																		{specifyPlan.name}
+																	{specifyPlan.name.length <= 12 ?
+																		<Typography variant="body1" sx={{fontWeight: 'bold'}}>
+																			{specifyPlan.name}
+																		</Typography> :
+																	specifyPlan.name.length <= 15 ?
+																		<Typography sx={{fontWeight: 'bold', fontSize: 15}}>
+																			{specifyPlan.name}
+																		</Typography> :
+																		<Typography sx={{fontWeight: 'bold', fontSize: 13.3}}>
+																			{specifyPlan.name}
 																	</Typography>
+																	}
 																	<Box sx={{marginLeft: '4vw'}}>
 																		<Typography
 																			variant='body2'
