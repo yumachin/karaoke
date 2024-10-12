@@ -1,0 +1,90 @@
+/* 左上 */
+@keyframes leftTop {
+	0% {
+		transform: translateY(0) rotate(20deg);
+	}
+	50% {
+		transform: translateY(-20px) rotate(-10deg);
+	}
+	100% {
+		transform: translateY(0) rotate(20deg);
+	}
+}
+
+/* 真ん中左 */
+@keyframes centerTopLeft {
+	0% {
+		transform: translateY(0) rotate(-30deg);
+	}
+	50% {
+		transform: translateY(-20px) rotate(20deg);
+	}
+	100% {
+		transform: translateY(0) rotate(-30deg);
+	}
+}
+
+/* 真ん中右 */
+@keyframes centerTopRight {
+	0% {
+		transform: translateY(0) rotate(30deg);
+	}
+	50% {
+		transform: translateY(-20px) rotate(-30deg);
+	}
+	100% {
+		transform: translateY(0) rotate(30deg);
+	}
+}
+
+/* 右上 */
+@keyframes rightTop {
+	0% {
+		transform: translateY(0) rotate(5deg);
+	}
+	50% {
+		transform: translateY(-20px) rotate(25deg);
+	}
+	100% {
+		transform: translateY(0) rotate(5deg);
+	}
+}
+
+/* 左下 */
+@keyframes leftBottom {
+	0% {
+		transform: translateY(0) rotate(-25deg);
+	}
+	50% {
+		transform: translateY(-20px) rotate(40deg);
+	}
+	100% {
+		transform: translateY(0) rotate(-25deg);
+	}
+}
+
+/* 右下 */
+@keyframes rightBottom {
+	0% {
+		transform: translateY(0) rotate(40deg);
+	}
+	50% {
+		transform: translateY(-20px) rotate(30deg);
+	}
+	100% {
+		transform: translateY(0) rotate(40deg);
+	}
+}
+
+/* 始めるボタンのアイコン */
+@keyframes sendIcon {
+	0% {
+		transform: translateX(0)
+	}
+	50% {
+		transform: translateX(10px)
+	}
+	100% {
+		transform: translateX(0)
+	}
+}
