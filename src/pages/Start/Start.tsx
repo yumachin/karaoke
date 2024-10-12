@@ -61,10 +61,10 @@ const Start: React.FC <StartProps> = ({ setHours,
           }}
         />
         <Stack
-          spacing={{ xs: 50, md: 60}}
+          spacing={{ xs: 40, md: 60}}
           sx={{
             '@media (max-height: 680px)': {
-              mt: '8vh'
+              mt: '6vh'
             }
           }}
         >

@@ -263,6 +263,9 @@ const StoreList: React.FC<StoreListProps> = ({ hours,
 						console.error("ドキュメント取得時にエラーが起きました。: ", err);
 						setGetDBError(true);
 					}
+					finally {
+						setLoading(false)
+					}
 				}
 			}
 			else {
@@ -301,18 +304,24 @@ const StoreList: React.FC<StoreListProps> = ({ hours,
 						console.error("ドキュメント取得時にエラーが起きました。: ", err);
 						setGetDBError(true);
 					}
+					finally {
+						setLoading(false)
+					}
 				}
 			}
     };
     getData();
-		setLoading(false)
-  }, [specfyCollection, specifyDocument, plans, place, rangeValue, sortToggle])
+  }, [specfyCollection, specifyDocument, plans, place, rangeValue, sortToggle, userLocation.latitude, userLocation.longitude])
 
 
   return (
 		<>
 			{loading ? (
-				<CircularProgress />
+				<Stack sx={{display: 'flex', justifyContent: 'center', alignItems: 'center', flexDirection: 'column'}} spacing={10}>
+					<Box sx={{pb: '20vh'}}></Box>    
+					<Typography sx={{mb: 5, fontFamily: "Reggae One", fontSize: 25}}>loading...</Typography>
+					<CircularProgress size={120} color='secondary'/>
+				</Stack>
 				) : (
 				<>
 					{/* 上部スペース */}
@@ -351,7 +360,7 @@ const StoreList: React.FC<StoreListProps> = ({ hours,
 					{/*件数表示*/}
 
 					{/* 上部スペース */}
-					<Box sx={{paddingBottom: '4vh'}}></Box>    
+					<Box sx={{pb: '5vh'}}></Box>    
 					{/* 上部スペース */}
 
 					{/*カード情報*/}
