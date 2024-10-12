@@ -20,6 +20,8 @@ const App = () => {
   const [plans, setPlans] = useState<string[]>(['Free']);
   const [rangeValue, setRangeValue] = useState<number>(1);
 
+  console.log(pointError);
+  console.log(holidayError);
 
   //リロード対策
   useEffect(() => {
