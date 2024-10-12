@@ -1,25 +1,28 @@
-import { Box, Menu, MenuItem, Typography } from '@mui/material'
+import { Box, Menu, MenuItem, Typography } from '@mui/material';
 
-import { HeaderProps } from '../../types/types'
-import { useState } from 'react';
+import { HeaderProps } from '../../types/types';
+import { useEffect, useState } from 'react';
 
-const Header: React.FC<HeaderProps> = ({ rangeOpen, setRangeOpen, setRangeValue }) => {
+const Header: React.FC<HeaderProps> = ({ rangeOpen, setRangeOpen, rangeValue, setRangeValue, selectedRange, setSelectedRange }) => {
   const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
-  const [selectedRange, setSelectedRange] = useState("1km")
 
   const handleClick = (event: React.MouseEvent<HTMLElement>) => {
-    setAnchorEl(event.currentTarget)
-    setRangeOpen(true)
-  }
+    setAnchorEl(event.currentTarget);
+    setRangeOpen(true);
+  };
   const handleClose = () => {
-    setAnchorEl(null)
-    setRangeOpen(false)
-  }
+    setAnchorEl(null);
+    setRangeOpen(false);
+  };
   const handleMenuItemClick = (strValue: string, numValue: number) => {
     setSelectedRange(strValue);
-    setRangeValue(numValue)
+    setRangeValue(numValue);
     handleClose();
-  }
+  };
+  useEffect(() => {
+    localStorage.setItem('range', JSON.stringify(rangeValue));
+    localStorage.setItem('numRange', selectedRange);
+  }, [rangeValue]);
 
   return (
     <Box 

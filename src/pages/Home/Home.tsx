@@ -22,7 +22,9 @@ const Home: React.FC<HomeProps> = ({ hours,
                                      plans,
                                      setPlans,
                                      rangeValue,
-                                     setRangeValue }) => 
+                                     setRangeValue,
+                                     selectedRange,
+                                     setSelectedRange }) => 
 {
   const [planOpen, setPlanOpen] = useState<boolean>(false)
   const [timeOpen, setTimeOpen] = useState<boolean>(false)
@@ -33,7 +35,7 @@ const Home: React.FC<HomeProps> = ({ hours,
   
   return (
     <div className='background'>
-      <Header rangeOpen={rangeOpen} setRangeOpen={setRangeOpen} setRangeValue={setRangeValue} />
+      <Header rangeOpen={rangeOpen} setRangeOpen={setRangeOpen} rangeValue={rangeValue} setRangeValue={setRangeValue} selectedRange={selectedRange} setSelectedRange={setSelectedRange} />
       <StoreList 
         hours={hours} 
         minutes={minutes} 

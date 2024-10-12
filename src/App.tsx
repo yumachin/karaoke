@@ -8,6 +8,9 @@ import { getDate } from './utils/getDate'
 import { judgeHoliday } from './utils/judgeHoliday'
 
 const App = () => {
+  const initialRange = localStorage.getItem('range') ? Number(localStorage.getItem('range')) : 1;
+  const initialRangeName = localStorage.getItem('numRange') ? String(localStorage.getItem('numRange')) : "1km";
+
   const [hours, setHours] = useState<number | null>(null);
   const [minutes, setMinutes] = useState<number | null>(null);
   const [dayOfWork, setDayOfWork] = useState<number | null>(null);
@@ -18,10 +21,28 @@ const App = () => {
   const [isTomorrowHoliday, setIsTomorrowHoliday] = useState<boolean | null>(null); //明日が祝日かどうか
   const [holidayError, setHolidayError] = useState<string | null>(null);
   const [plans, setPlans] = useState<string[]>(['Free']);
-  const [rangeValue, setRangeValue] = useState<number>(1);
+  const [rangeValue, setRangeValue] = useState<number>(initialRange);
+  const [selectedRange, setSelectedRange] = useState(initialRangeName);
 
   console.log(pointError);
   console.log(holidayError);
+
+  useEffect(() => {
+    if (localStorage.getItem("range")) {
+      const a = Number(localStorage.getItem("range"))
+      setRangeValue(a)
+    }
+    else {
+      setRangeValue(1)
+    }
+    if (localStorage.getItem("numRange")) {
+      const b = String(localStorage.getItem("numRange"))
+      setSelectedRange(b)
+    }
+    else {
+      setSelectedRange('1km')
+    }
+  }, [])
 
   //リロード対策
   useEffect(() => {
@@ -65,6 +86,8 @@ const App = () => {
                                           setPlans={setPlans}
                                           rangeValue={rangeValue}
                                           setRangeValue={setRangeValue}
+                                          selectedRange={selectedRange}
+                                          setSelectedRange={setSelectedRange}
                                          />
                                       }
             />

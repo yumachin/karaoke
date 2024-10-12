@@ -44,7 +44,8 @@ const Start: React.FC <StartProps> = ({ setHours,
           background: `linear-gradient(to bottom, rgba(123, 104, 238, 0.8), rgba(255, 99, 71, 0.8)), url(${backgroundImage})`,
           backgroundSize: 'cover',
           backgroundPosition: 'center',
-          backgroundRepeat: 'no-repeat'
+          backgroundRepeat: 'no-repeat',
+          overflowY: 'hidden'
         }}
       >
         <Box 

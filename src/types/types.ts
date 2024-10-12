@@ -3,7 +3,10 @@ import { Dispatch, SetStateAction } from "react";
 export interface HeaderProps {
     rangeOpen: boolean;
     setRangeOpen: Dispatch<SetStateAction<boolean>>;
+    rangeValue: number;
     setRangeValue: Dispatch<SetStateAction<number>>;
+    selectedRange: string;
+    setSelectedRange: Dispatch<SetStateAction<string>>;
 }
 
 export interface NavbarProps {
@@ -59,6 +62,8 @@ export interface HomeProps {
     setPlans: React.Dispatch<React.SetStateAction<string[]>>;
     rangeValue: number;
     setRangeValue: Dispatch<SetStateAction<number>>;
+    selectedRange: string;
+    setSelectedRange: Dispatch<SetStateAction<string>>;
 }
 
 export interface StoreListProps {
