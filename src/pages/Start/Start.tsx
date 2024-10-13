@@ -73,13 +73,16 @@ const Start: React.FC <StartProps> = ({ setHours,
       <Dialog
         open={modal} onClose={() => setModal(false)}
       >
-        <DialogTitle display="flex" alignItems='center' gap={1} sx={{fontFamily: "Reggae One", fontSize: 21, color: "#f44336", fontWeight: 'bold'}}>
+        <DialogTitle display="flex" alignItems='center' gap={1} sx={{fontFamily: "Reggae One", fontSize: 22, color: "#f44336", fontWeight: 'bold'}}>
           <WarningAmberIcon />
           Attention
         </DialogTitle>
         <DialogContent>
-          <DialogContentText sx={{fontFamily: "Reggae One", fontSize: 13, mb: 3}}>
+          <DialogContentText sx={{fontFamily: "Reggae One", fontSize: 13, mb: 1, textIndent: "1em"}}>
             設定からブラウザの位置情報の使用を許可しなければ、このアプリは利用できません。
+          </DialogContentText>
+          <DialogContentText sx={{fontFamily: "Reggae One", fontSize: 13, mb: 4, textIndent: "1em"}}>
+            現在地の取得において、通信環境によっては誤差が出る場合があります。ご了承ください。
           </DialogContentText>
           <FormControlLabel
             control={
@@ -90,7 +93,7 @@ const Start: React.FC <StartProps> = ({ setHours,
               />
             }
             label={
-              <Typography sx={{fontFamily: "Reggae One", fontSize: 11}}>
+              <Typography sx={{fontFamily: "Reggae One", fontSize: 12}}>
                 次回から表示しない
               </Typography>
             }

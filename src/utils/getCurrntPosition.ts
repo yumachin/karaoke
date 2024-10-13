@@ -13,7 +13,8 @@ export const getCurrentPosition = (setLatitude: Dispatch<SetStateAction<number |
         setPointError("現在地を取得できませんでした。エラーコード: " + err.code);
         setLatitude(null);
         setLongitude(null);
-      }
+      },
+      { enableHighAccuracy: true } // 精度の調整
     );
   } 
   else {

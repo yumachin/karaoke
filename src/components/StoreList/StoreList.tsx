@@ -47,7 +47,8 @@ const StoreList: React.FC<StoreListProps> = ({ hours,
   const isPc = useMediaQuery('(min-width: 1050px)');
 
 	const userLocation = {latitude, longitude};
-	
+	console.log("緯度は", latitude)  //34.8108589が上島珈琲店(茶屋町まで20km)   34.7052361が上島珈琲店(茶屋町まで170m)
+	console.log("経度は", longitude) //135.6840419が上島珈琲店(茶屋町まで20km)  135.4984582が上島珈琲店(茶屋町まで170m)
 
   //時間情報から、コレクションを確定。
   useEffect(() => {
@@ -277,6 +278,7 @@ const StoreList: React.FC<StoreListProps> = ({ hours,
 						if (document.exists()) {
 							const data = document.data();
 							const newPlans: { [key: string]: any }[] = [];
+							const distanceArry: number[] = [];
 							plans.forEach((plan) => {
 								if ( data[plan] ) {
 									data[plan].map((dt: DtProps) => {
@@ -284,10 +286,25 @@ const StoreList: React.FC<StoreListProps> = ({ hours,
 										if (distance !== undefined) {
 											if (distance <= rangeValue) {
 												if (dt.place === place) {
+													distanceArry.push(distance);
 													newPlans.push(dt);
-													!sortToggle ? 
-													newPlans.sort((a, b) => a.price - b.price) :
-													newPlans.sort((a, b) => a.distance - b.distance)
+													if (!sortToggle) {
+														newPlans.sort((a, b) => a.price - b.price)
+													}
+													else {
+														for (let i = 0; i < newPlans.length - 1; i++) {
+															for (let j = 0; j < newPlans.length - 1 - i; j++) {
+																if (distanceArry[j] > distanceArry[j + 1]) {
+																	const temp = newPlans[j];
+																	const temp2 = distanceArry[j];
+																	newPlans[j] = newPlans[j + 1];
+																	distanceArry[j] = distanceArry[j + 1];
+																	newPlans[j + 1] = temp;
+																	distanceArry[j + 1] = temp2;
+																}
+															}
+														}
+													}
 												}
 											}
 										}
