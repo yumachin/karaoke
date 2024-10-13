@@ -10,6 +10,8 @@ import { judgeHoliday } from './utils/judgeHoliday'
 const App = () => {
   const initialRange = localStorage.getItem('range') ? Number(localStorage.getItem('range')) : 1;
   const initialRangeName = localStorage.getItem('numRange') ? String(localStorage.getItem('numRange')) : "1km";
+  // const lsPlan =  localStorage.getItem('plan')
+  // const initialPlan: string[] = lsPlan ? JSON.parse(lsPlan) : ["Free"];
 
   const [hours, setHours] = useState<number | null>(null);
   const [minutes, setMinutes] = useState<number | null>(null);
@@ -27,6 +29,7 @@ const App = () => {
   console.log(pointError);
   console.log(holidayError);
 
+  //リロードしてもLSからフィルター項目取得
   useEffect(() => {
     if (localStorage.getItem("range")) {
       const a = Number(localStorage.getItem("range"))
@@ -42,6 +45,14 @@ const App = () => {
     else {
       setSelectedRange('1km')
     }
+    // if (localStorage.getItem("plan")) {
+    //   const c = String(localStorage.getItem("plan"))
+    //   const d = JSON.parse(c)
+    //   setPlans(d)
+    // }
+    // else {
+    //   setPlans(['Free'])
+    // }
   }, [])
 
   //リロード対策

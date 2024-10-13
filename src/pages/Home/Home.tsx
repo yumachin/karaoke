@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 
 import Header from '../../components/Header/Header'
 import StoreList from '../../components/StoreList/StoreList'
@@ -30,9 +30,21 @@ const Home: React.FC<HomeProps> = ({ hours,
   const [timeOpen, setTimeOpen] = useState<boolean>(false)
   const [spotOpen, setSpotOpen] = useState<boolean>(false)
   const [rangeOpen, setRangeOpen] = useState<boolean>(false)
+  const lsPlace = localStorage.getItem('place')
+  const initialPlace: string = lsPlace ? lsPlace : "選択しない";
 
-  const [place, setPlace] = useState('選択しない');
+  const [place, setPlace] = useState(initialPlace);
   
+  useEffect(() => {
+    if (localStorage.getItem("place")) {
+      const e = String(localStorage.getItem("place"))
+      setPlace(e)
+    }
+    else {
+      setPlace("選択しない")
+    }
+  }, [])
+
   return (
     <div className='background'>
       <Header rangeOpen={rangeOpen} setRangeOpen={setRangeOpen} rangeValue={rangeValue} setRangeValue={setRangeValue} selectedRange={selectedRange} setSelectedRange={setSelectedRange} />

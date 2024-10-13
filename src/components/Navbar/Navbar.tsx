@@ -27,7 +27,7 @@ const Navbar: React.FC<NavbarProps> = ({ hours,
                                          timeOpen, 
                                          setTimeOpen, 
                                          spotOpen, 
-                                         setSpotOpen, 
+                                         setSpotOpen,
                                          setPlans, 
                                          place, 
                                          setPlace
@@ -41,6 +41,12 @@ const Navbar: React.FC<NavbarProps> = ({ hours,
     const [endlessFreeChecked, setEndlessFreeChecked] = useState(false);
   //プラン変更に用いる変数
 
+  // //プランのリロード
+  //   useEffect(() => {
+  //     localStorage.setItem('plan', JSON.stringify(plans));
+  //   }, [plans]);
+  // //プランのリロード
+  
   //プランの変更
     const checkedFree = (event: React.ChangeEvent<HTMLInputElement>) => {
       setFreeChecked(event.target.checked);
@@ -169,6 +175,12 @@ const Navbar: React.FC<NavbarProps> = ({ hours,
     };
   //時間の変更
 
+  //場所のリロード
+    useEffect(() => {
+      localStorage.setItem('place', place);
+    }, [place]);
+  
+  //場所のリロード
 
   //場所フィルター
     const handleSpotChange = (event: SelectChangeEvent) => {
