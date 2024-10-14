@@ -133,6 +133,9 @@ const Start: React.FC <StartProps> = ({ setHours,
             sx={{
               '@media (max-height: 680px)': {
                 mt: '10vh'
+              },
+              '@media (min-height: 680px)': {
+                mt: '5vh'
               }
             }}
           >
