@@ -15,13 +15,13 @@ export default defineConfig({
         theme_color: '#ffffff',
         icons: [
           {
-            src: '/icons/Jankara.jpg',
-            sizes: '400x400',
-            type: 'image/jpeg'
-          },
+            src: '/icons/karakaraLogo.png',
+            sizes: '379x379',
+            type: 'image/png'
+          }
         ],
         start_url: '/',
-        display: 'standalone',
+        display: 'fullscreen',
         background_color: '#ffffff'
       }
     })
