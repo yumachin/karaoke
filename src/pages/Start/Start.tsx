@@ -56,8 +56,8 @@ const Start: React.FC <StartProps> = ({ setHours,
 
   useEffect(() => {
     const attention = localStorage.getItem("attention")
-    console.log(attention)
-    console.log(typeof(attention))
+    // console.log(attention)
+    // console.log(typeof(attention))
     if (attention) {
       attention === "true" ? 
         setModal(true) :
@@ -129,10 +129,10 @@ const Start: React.FC <StartProps> = ({ setHours,
             }}
           />
           <Stack
-            spacing={{ xs: 40, md: 60}}
+            spacing={{ xs: 50, md: 60}}
             sx={{
               '@media (max-height: 680px)': {
-                mt: '6vh'
+                mt: '10vh'
               }
             }}
           >

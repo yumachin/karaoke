@@ -201,8 +201,8 @@ const Navbar: React.FC<NavbarProps> = ({ hours,
       sx={{
         bgcolor: "tomato",
         color: 'white',
-        p: '0.7vh',
-        pb: '1vh'
+        p: '1vh',
+        pb: '3vh'
       }}
     >
 

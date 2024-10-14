@@ -707,7 +707,7 @@ const StoreList: React.FC<StoreListProps> = ({ hours,
 					{/*カード情報*/}
 
 					{/* 下部スペース */}
-						<Box sx={{paddingTop: '7vh'}}></Box>  
+						<Box sx={{paddingTop: '9.5vh'}}></Box>  
 					{/* 下部スペース */}
 				</>
 				)
