@@ -56,8 +56,6 @@ const Start: React.FC <StartProps> = ({ setHours,
 
   useEffect(() => {
     const attention = localStorage.getItem("attention")
-    // console.log(attention)
-    // console.log(typeof(attention))
     if (attention) {
       attention === "true" ? 
         setModal(true) :
