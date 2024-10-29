@@ -66,6 +66,24 @@ const Start: React.FC <StartProps> = ({ setHours,
     }
   }, [])
 
+  const [text, setText] = useState('')
+  const fullText = 'karakara'
+
+  useEffect(() => {
+    // setInterval: 指定した間隔（この場合は200ミリ秒）で関数を繰り返し実行
+    const interval = setInterval(() => {
+      setText((current) => {
+        if (current.length < fullText.length) {
+          // index番号が、0からcurrent.length + 1までの文字を抽出
+          return fullText.slice(0, current.length + 1)
+        }
+        return current
+      })
+    }, 200)
+
+    return () => clearInterval(interval)
+  }, [])
+
   return (
     <>
       <Dialog
@@ -145,7 +163,7 @@ const Start: React.FC <StartProps> = ({ setHours,
                 position: 'relative'
               }}
             >
-              karakara
+              {text}
               <Box
                 sx={{
                   position: 'absolute',
