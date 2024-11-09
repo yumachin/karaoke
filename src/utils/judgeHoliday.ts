@@ -1,47 +1,55 @@
 import { Dispatch, SetStateAction } from "react";
 
 // 祝日、あるいは祝前日かを判断する関数
-export const judgeHoliday = async (setIsHoliday: Dispatch<SetStateAction<boolean | null>>, setIsTomorrowHoliday: Dispatch<SetStateAction<boolean | null>>, setHolidayError: Dispatch<SetStateAction<string | null>>) => {
+export const judgeHoliday = async ( setIsHoliday: Dispatch<SetStateAction<boolean | null>>, setIsTomorrowHoliday: Dispatch<SetStateAction<boolean | null>>, setHolidayError: Dispatch<SetStateAction<string | null>> ) => {
   const today = new Date();
-  // 今日
+
+  // 今日が何年か
   const year = today.getFullYear();
-  const todayString = today.toISOString().split('T')[0]; //2024-9-30的なのを取得
-  // 明日
+  // toISOString: ISO 8601 形式の文字列に変換( "2024-09-30T05:30:00.000Z" 的なの)
+  const todayString = today.toISOString().split('T')[0];
+
+  // 明日が何年か
   const tomorrow = new Date(today);
+  // ここで日付を1日進ませる
   tomorrow.setDate(today.getDate() + 1);
   const tomorrowYear = tomorrow.getFullYear();
-  const tomorrowString = tomorrow.toISOString().split('T')[0]; //2024-10-1的なのを取得
-  
-  // デバッグ用
-  //console.log(`Year: ${year}, Tomorrow Year: ${tomorrowYear}`); 
-  //console.log(typeof year, typeof tomorrowYear); 
+  // 2024-10-1的なのを取得
+  const tomorrowString = tomorrow.toISOString().split('T')[0];
 
   try {
-    // 今日
-    const todayResponse = await fetch(`https://date.nager.at/api/v2/PublicHolidays/${year}/JP`);
-    if (!todayResponse.ok) {
+    // 今日が祝日かどうか
+    const todayRes = await fetch(`https://date.nager.at/api/v2/PublicHolidays/${year}/JP`);
+    if (!todayRes.ok) {
+      // throw: catchに渡す
       throw new Error('祝日情報を取得できませんでした。');
     }
-    const todayHolidays = await todayResponse.json();
-    const TodayBoolean = todayHolidays.some((holiday: any) => holiday.date === todayString); //祝日APIの情報と今日がマッチするかどうか
-    setIsHoliday(TodayBoolean); //祝日ならtrue
+    // 祝日一覧
+    const todayHolidays = await todayRes.json();
+    // some: 配列内の最低1つが、指定した条件を満たすか判定
+    // 満たしていたらtrue
+    const TodayBoolean = todayHolidays.some((holiday: any) => holiday.date === todayString);
+    setIsHoliday(TodayBoolean);
 
-    // 明日
-    const tomorrowResponse = await fetch(`https://date.nager.at/api/v2/PublicHolidays/${tomorrowYear}/JP`);
-    if (!tomorrowResponse.ok) {
+    // 明日が祝日かどうか
+    const tomorrowRes = await fetch(`https://date.nager.at/api/v2/PublicHolidays/${tomorrowYear}/JP`);
+    if (!tomorrowRes.ok) {
       throw new Error('祝日情報を取得できませんでした。');
     }
-    const tomorrowHolidays = await tomorrowResponse.json();
-    const TomorrowBoolean = tomorrowHolidays.some((holiday: any) => holiday.date === tomorrowString); //祝日APIの情報と明日がマッチするかどうか
-    setIsTomorrowHoliday(TomorrowBoolean); //祝日ならtrue
-  } 
-  // エラー処理
-  catch (err :unknown) {
+    const tomorrowHolidays = await tomorrowRes.json();
+    const TomorrowBoolean = tomorrowHolidays.some((holiday: any) => holiday.date === tomorrowString);
+    setIsTomorrowHoliday(TomorrowBoolean);
+  }
+
+  // tryで発生したエラーをerrに格納
+  // catchで捕まえたエラーは、unknown型を使うことが推奨
+  catch (err: unknown) {
+    // err instanceof Error: errがErrorオブジェクトのインスタンスか
     if (err instanceof Error) {
       setHolidayError(err.message);
     } 
     else {
       setHolidayError('予期せぬエラーが発生しました。');
     }
-  };
+  }
 }

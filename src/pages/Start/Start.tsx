@@ -13,11 +13,11 @@ import backgroundImage from '../../assets/background.jpg';
 import './Start.css';
 import { StartProps } from '../../types/types';
 import { getDate } from '../../utils/getDate';
-import { getCurrentPosition } from '../../utils/getCurrntPosition';
+import { getMyPosition } from '../../utils/getMyPosition';
 import { judgeHoliday } from '../../utils/judgeHoliday';
 import { useEffect, useState } from 'react';
 
-const Start: React.FC <StartProps> = ({ setHours, 
+const Start: React.FC<StartProps> = ({ setHours, 
                                         setMinutes, 
                                         setDayOfWork, 
                                         setLatitude, 
@@ -31,21 +31,19 @@ const Start: React.FC <StartProps> = ({ setHours,
   // 始めるボタンを押した時に発火
   const handleClick = () => {
     getDate(setHours, setMinutes, setDayOfWork);
-    getCurrentPosition(setLatitude, setLongitude, setPointError);
+    getMyPosition(setLatitude, setLongitude, setPointError);
     judgeHoliday(setIsHoliday, setIsTomorrowHoliday, setHolidayError);
   };
 
   // 位置情報の使用の許可を求めるモーダル(最初は表示)
-  let initialModal = true
+  let initialModal = true;
 
   // このモーダルを表示にしているとき
-  if (localStorage.getItem("attention") === "true") {
-    initialModal = true
-  } 
+  if (localStorage.getItem("attention") === "true")
+    initialModal = true;
   // このモーダルを非表示にしているとき
-  else {
-    initialModal = false
-  }
+  else
+    initialModal = false;
 
   const [modal, setModal] = useState(initialModal);
   const [checked, setChecked] = useState(false);
@@ -57,19 +55,19 @@ const Start: React.FC <StartProps> = ({ setHours,
 
   // レンダリングされたとき発火
   useEffect(() => {
-    const attention = localStorage.getItem("attention")
+    const attention = localStorage.getItem("attention");
     attention === "true" ? setModal(true) : setModal(false)
-  }, [])
+  }, []);
 
   // 「次回から表示しない」のチェックボックスにチェックしたとき発火
   const handleCheckboxChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     setChecked(event.target.checked);
-    setModal(false)
+    setModal(false);
   };
 
   // 表示時のタイトルアニメーション
-  const [text, setText] = useState('')
-  const fullText = 'karakara'
+  const [text, setText] = useState('');
+  const fullText = 'karakara';
 
   // useEffect内にsetIntervalを入れることでコンポーネントがマウントされた時にタイマーを開始し、アンマウントされる時にタイマーを停止する
   useEffect(() => {
@@ -79,16 +77,16 @@ const Start: React.FC <StartProps> = ({ setHours,
       setText((current_text) => {
         if (current_text.length < fullText.length) {
           // index番号が、（0～current_text.length+1）までの文字を抽出
-          return fullText.slice(0, current_text.length + 1)
+          return fullText.slice(0, current_text.length + 1);
         }
         // ここはif文がfalseのとき実行
-        return current_text
-      })
-    }, 100)
+        return current_text;
+      });
+    }, 100);
 
     // clearInterval: 引数（interval）を停止
-    return () => clearInterval(interval)
-  }, [])
+    return () => clearInterval(interval);
+  }, []);
 
   return (
     <>

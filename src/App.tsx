@@ -3,7 +3,7 @@ import Start from './pages/Start/Start'
 import Home from './pages/Home/Home'
 import Resister from './utils/Resister'
 import { useEffect, useState } from 'react'
-import { getCurrentPosition } from './utils/getCurrntPosition'
+import { getCurrentPosition } from './utils/getMyPosition'
 import { getDate } from './utils/getDate'
 import { judgeHoliday } from './utils/judgeHoliday'
 
