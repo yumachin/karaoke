@@ -1,6 +1,6 @@
 import { Dispatch, SetStateAction } from "react";
 
-// 時間と曜日を取得する関数
+// 今日の時間と曜日を取得する関数
 export const getDate = (setHours: Dispatch<SetStateAction<number | null>>, setMinutes: Dispatch<SetStateAction<number | null>> , setDayOfWork: Dispatch<SetStateAction<number | null>>) => {
   const today = new Date();
   setHours(today.getHours());
