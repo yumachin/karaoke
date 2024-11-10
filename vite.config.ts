@@ -12,7 +12,7 @@ export default defineConfig({
         name: 'karakara',
         short_name: 'karakara',
         description: 'My awesome Vite app',
-        theme_color: '#ffffff',
+        theme_color: '#7F50FF',
         icons: [
           {
             src: '/icons/karakaraLogo.png',
@@ -22,7 +22,7 @@ export default defineConfig({
         ],
         start_url: '/',
         display: 'fullscreen',
-        background_color: '#7F50FF'
+        background_color: '#ffffff'
       }
     })
   ],
