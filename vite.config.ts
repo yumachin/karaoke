@@ -22,7 +22,7 @@ export default defineConfig({
         ],
         start_url: '/',
         display: 'fullscreen',
-        background_color: '#ffffff'
+        background_color: '#7F50FF'
       }
     })
   ],
