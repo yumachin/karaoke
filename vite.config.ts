@@ -9,8 +9,8 @@ export default defineConfig({
     VitePWA({
       registerType: 'autoUpdate',
       manifest: {
-        name: 'My Vite App',
-        short_name: 'ViteApp',
+        name: 'karakara',
+        short_name: 'karakara',
         description: 'My awesome Vite app',
         theme_color: '#ffffff',
         icons: [
