@@ -22,28 +22,17 @@ const Start: React.FC<StartProps> = ({ setHours,
                                         setDayOfWork, 
                                         setLatitude, 
                                         setLongitude, 
-                                        setPointError, 
+                                        positionError,
+                                        setPositionError, 
                                         setIsHoliday, 
                                         setIsTomorrowHoliday, 
+                                        holidayError,
                                         setHolidayError 
                                       }) => 
 {
-  // 始めるボタンを押した時に発火
-  const handleClick = () => {
-    getDate(setHours, setMinutes, setDayOfWork);
-    getMyPosition(setLatitude, setLongitude, setPointError);
-    judgeHoliday(setIsHoliday, setIsTomorrowHoliday, setHolidayError);
-  };
-
   // 位置情報の使用の許可を求めるモーダル(最初は表示)
   let initialModal = true;
-
-  // このモーダルを表示にしているとき
-  if (localStorage.getItem("attention") === "true")
-    initialModal = true;
-  // このモーダルを非表示にしているとき
-  else
-    initialModal = false;
+  localStorage.getItem("attention") === "false" ? initialModal = false : initialModal = true;
 
   const [modal, setModal] = useState(initialModal);
   const [checked, setChecked] = useState(false);
@@ -56,7 +45,7 @@ const Start: React.FC<StartProps> = ({ setHours,
   // レンダリングされたとき発火
   useEffect(() => {
     const attention = localStorage.getItem("attention");
-    attention === "true" ? setModal(true) : setModal(false)
+    attention === "false" ? setModal(false) : setModal(true)
   }, []);
 
   // 「次回から表示しない」のチェックボックスにチェックしたとき発火
@@ -87,6 +76,13 @@ const Start: React.FC<StartProps> = ({ setHours,
     // clearInterval: 引数（interval）を停止
     return () => clearInterval(interval);
   }, []);
+
+  // 始めるボタンを押した時に発火
+  const handleClick = () => {
+    getDate(setHours, setMinutes, setDayOfWork);
+    getMyPosition(setLatitude, setLongitude, positionError, setPositionError);
+    judgeHoliday(setIsHoliday, setIsTomorrowHoliday, holidayError, setHolidayError);
+  };
 
   return (
     <>
@@ -174,7 +170,7 @@ const Start: React.FC<StartProps> = ({ setHours,
                 <Box
                   sx={{
                     position: 'absolute',
-                    fontSize: '30px',
+                    fontSize: 30,
                     top: '-30px', 
                     right: '290px',
                     // 2s ease-in-out: 2秒かけて動作し、アニメーションの開始時と終了時はゆっくり
@@ -186,7 +182,7 @@ const Start: React.FC<StartProps> = ({ setHours,
                 <Box
                   sx={{
                     position: 'absolute',
-                    fontSize: '30px',
+                    fontSize: 30,
                     top: '-25px', 
                     right: '160px',
                     animation: 'centerTopLeft 4.5s ease-in-out infinite'
@@ -197,7 +193,7 @@ const Start: React.FC<StartProps> = ({ setHours,
                 <Box 
                   sx={{
                     position: 'absolute',
-                    fontSize: '30px',
+                    fontSize: 30,
                     top: '-40px', 
                     right: '80px',
                     animation: 'centerTopRight 3s ease-in-out infinite'
@@ -208,7 +204,7 @@ const Start: React.FC<StartProps> = ({ setHours,
                 <Box 
                   sx={{
                     position: 'absolute',
-                    fontSize: '30px',
+                    fontSize: 30,
                     top: '-20px', 
                     right: '-35px',
                     animation: 'rightTop 1.5s ease-in-out infinite'
@@ -219,7 +215,7 @@ const Start: React.FC<StartProps> = ({ setHours,
                 <Box 
                   sx={{
                     position: 'absolute',
-                    fontSize: '30px',
+                    fontSize: 30,
                     top: '100px', 
                     right: '200px',
                     animation: 'leftBottom 4s ease-in-out infinite'
@@ -230,7 +226,7 @@ const Start: React.FC<StartProps> = ({ setHours,
                 <Box
                   sx={{
                     position: 'absolute',
-                    fontSize: '30px',
+                    fontSize: 30,
                     top: '90px', 
                     right: '40px',
                     animation: 'rightBottom 2.5s ease-in-out infinite'

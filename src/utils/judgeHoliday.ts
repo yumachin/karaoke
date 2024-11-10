@@ -1,7 +1,7 @@
 import { Dispatch, SetStateAction } from "react";
 
 // 祝日、あるいは祝前日かを判断する関数
-export const judgeHoliday = async ( setIsHoliday: Dispatch<SetStateAction<boolean | null>>, setIsTomorrowHoliday: Dispatch<SetStateAction<boolean | null>>, setHolidayError: Dispatch<SetStateAction<string | null>> ) => {
+export const judgeHoliday = async ( setIsHoliday: Dispatch<SetStateAction<boolean | null>>, setIsTomorrowHoliday: Dispatch<SetStateAction<boolean | null>>, holidayError: string | null, setHolidayError: Dispatch<SetStateAction<string | null>> ) => {
   const today = new Date();
 
   // 今日が何年か
@@ -52,4 +52,6 @@ export const judgeHoliday = async ( setIsHoliday: Dispatch<SetStateAction<boolea
       setHolidayError('予期せぬエラーが発生しました。');
     }
   }
+
+  if (holidayError) console.log(holidayError)
 }

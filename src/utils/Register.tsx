@@ -2,7 +2,7 @@ import { db } from "../firebase"
 import { arrayUnion, collection, doc, updateDoc, getDocs, setDoc } from "firebase/firestore";
 import { useState } from "react"
 
-const Resister = () => {
+const Register = () => {
   const [name, setName] = useState("")
   const [price, setPrice] = useState("")
   const [place, setPlace] = useState("")
@@ -238,4 +238,4 @@ const Resister = () => {
   )
 }
 
-export default Resister
+export default Register

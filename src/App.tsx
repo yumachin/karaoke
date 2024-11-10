@@ -1,66 +1,32 @@
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom'
-import Start from './pages/Start/Start'
-import Home from './pages/Home/Home'
-import Resister from './utils/Resister'
-import { useEffect, useState } from 'react'
-import { getCurrentPosition } from './utils/getMyPosition'
-import { getDate } from './utils/getDate'
-import { judgeHoliday } from './utils/judgeHoliday'
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import Start from './pages/Start/Start';
+import Home from './pages/Home/Home';
+// import Register from './utils/Register';
+
+import { useEffect, useState } from 'react';
+import { getDate } from './utils/getDate';
+import { getMyPosition } from './utils/getMyPosition';
+import { judgeHoliday } from './utils/judgeHoliday';
 
 const App = () => {
-  const initialRange = localStorage.getItem('range') ? Number(localStorage.getItem('range')) : 1;
-  const initialRangeName = localStorage.getItem('numRange') ? String(localStorage.getItem('numRange')) : "1km";
-  // const lsPlan =  localStorage.getItem('plan')
-  // const initialPlan: string[] = lsPlan ? JSON.parse(lsPlan) : ["Free"];
-
   const [hours, setHours] = useState<number | null>(null);
   const [minutes, setMinutes] = useState<number | null>(null);
   const [dayOfWork, setDayOfWork] = useState<number | null>(null);
+
   const [latitude, setLatitude] = useState<number | null>(null);
   const [longitude, setLongitude] = useState<number | null>(null);
-  const [pointError, setPointError] = useState<string | null>(null);
+  const [positionError, setPositionError] = useState<string | null>(null);
+
   const [isHoliday, setIsHoliday] = useState<boolean | null>(null);
-  const [isTomorrowHoliday, setIsTomorrowHoliday] = useState<boolean | null>(null); //明日が祝日かどうか
+  const [isTomorrowHoliday, setIsTomorrowHoliday] = useState<boolean | null>(null);
   const [holidayError, setHolidayError] = useState<string | null>(null);
-  const [plans, setPlans] = useState<string[]>(['Free']);
-  const [rangeValue, setRangeValue] = useState<number>(initialRange);
-  const [selectedRange, setSelectedRange] = useState(initialRangeName);
-
-  console.log(pointError);
-  console.log(holidayError);
-
-  //リロードしてもLSからフィルター項目取得
+  
+  // リロード時、改めて取得
   useEffect(() => {
-    if (localStorage.getItem("range")) {
-      const a = Number(localStorage.getItem("range"))
-      setRangeValue(a)
-    }
-    else {
-      setRangeValue(1)
-    }
-    if (localStorage.getItem("numRange")) {
-      const b = String(localStorage.getItem("numRange"))
-      setSelectedRange(b)
-    }
-    else {
-      setSelectedRange('1km')
-    }
-    // if (localStorage.getItem("plan")) {
-    //   const c = String(localStorage.getItem("plan"))
-    //   const d = JSON.parse(c)
-    //   setPlans(d)
-    // }
-    // else {
-    //   setPlans(['Free'])
-    // }
-  }, [])
-
-  //リロード対策
-  useEffect(() => {
-    getCurrentPosition(setLatitude, setLongitude, setPointError);
     getDate(setHours, setMinutes, setDayOfWork);
-    judgeHoliday(setIsHoliday, setIsTomorrowHoliday, setHolidayError);
-	}, [])
+    getMyPosition(setLatitude, setLongitude, positionError, setPositionError);
+    judgeHoliday(setIsHoliday, setIsTomorrowHoliday, holidayError, setHolidayError);
+	}, []);
 
   return (
     <div>
@@ -72,9 +38,11 @@ const App = () => {
                                       setDayOfWork={setDayOfWork} 
                                       setLatitude={setLatitude} 
                                       setLongitude={setLongitude} 
-                                      setPointError={setPointError}
+                                      positionError={positionError}
+                                      setPositionError={setPositionError}
                                       setIsHoliday={setIsHoliday}
                                       setIsTomorrowHoliday={setIsTomorrowHoliday}
+                                      holidayError={holidayError}
                                       setHolidayError={setHolidayError}
                                     />
                                   }
@@ -92,21 +60,16 @@ const App = () => {
                                           setIsHoliday={setIsHoliday}
                                           isTomorrowHoliday={isTomorrowHoliday}
                                           setIsTomorrowHoliday={setIsTomorrowHoliday}
+                                          holidayError={holidayError}
                                           setHolidayError={setHolidayError}
-                                          plans={plans}
-                                          setPlans={setPlans}
-                                          rangeValue={rangeValue}
-                                          setRangeValue={setRangeValue}
-                                          selectedRange={selectedRange}
-                                          setSelectedRange={setSelectedRange}
                                          />
                                       }
             />
-          <Route path='/resister' element={<Resister />}/>
+          {/* <Route path='/register' element={<Register />}/> */}
         </Routes>
       </Router>
     </div>
-  )
-}
+  );
+};
 
-export default App
+export default App;

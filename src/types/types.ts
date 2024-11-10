@@ -3,10 +3,8 @@ import { Dispatch, SetStateAction } from "react";
 export interface HeaderProps {
     rangeOpen: boolean;
     setRangeOpen: Dispatch<SetStateAction<boolean>>;
-    rangeValue: number;
-    setRangeValue: Dispatch<SetStateAction<number>>;
-    selectedRange: string;
-    setSelectedRange: Dispatch<SetStateAction<string>>;
+    range: number;
+    setRange: Dispatch<SetStateAction<number>>;
 }
 
 export interface NavbarProps {
@@ -20,13 +18,14 @@ export interface NavbarProps {
     setIsHoliday: Dispatch<SetStateAction<boolean | null>>;
     isTomorrowHoliday: boolean | null;
     setIsTomorrowHoliday: Dispatch<SetStateAction<boolean | null>>;
+    holidayError: string | null;
     setHolidayError: Dispatch<SetStateAction<string | null>>;
     planOpen: boolean;
     setPlanOpen: Dispatch<SetStateAction<boolean>>;
     timeOpen: boolean;
     setTimeOpen: Dispatch<SetStateAction<boolean>>;
-    spotOpen: boolean;
-    setSpotOpen: Dispatch<SetStateAction<boolean>>;
+    placeOpen: boolean;
+    setPlaceOpen: Dispatch<SetStateAction<boolean>>;
     setPlans: Dispatch<SetStateAction<string[]>>
     place: string;
     setPlace:  Dispatch<SetStateAction<string>>;
@@ -38,9 +37,11 @@ export interface StartProps {
     setDayOfWork: Dispatch<SetStateAction<number | null>>;
     setLatitude: Dispatch<SetStateAction<number | null>>;
     setLongitude: Dispatch<SetStateAction<number | null>>;
-    setPointError: Dispatch<SetStateAction<string | null>>;
+    positionError: string | null;
+    setPositionError: Dispatch<SetStateAction<string | null>>;
     setIsHoliday: Dispatch<SetStateAction<boolean | null>>;
     setIsTomorrowHoliday: Dispatch<SetStateAction<boolean | null>>;
+    holidayError: string | null;
     setHolidayError: Dispatch<SetStateAction<string | null>>;
 }
 
@@ -57,13 +58,8 @@ export interface HomeProps {
     setIsHoliday: Dispatch<SetStateAction<boolean | null>>;
     isTomorrowHoliday: boolean | null;
     setIsTomorrowHoliday: Dispatch<SetStateAction<boolean | null>>;
+    holidayError: string | null;
     setHolidayError: Dispatch<SetStateAction<string | null>>;
-    plans: string[];
-    setPlans: React.Dispatch<React.SetStateAction<string[]>>;
-    rangeValue: number;
-    setRangeValue: Dispatch<SetStateAction<number>>;
-    selectedRange: string;
-    setSelectedRange: Dispatch<SetStateAction<string>>;
 }
 
 export interface StoreListProps {

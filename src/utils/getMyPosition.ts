@@ -1,6 +1,6 @@
-import { Dispatch, SetStateAction } from "react";
+import { Dispatch, SetStateAction, } from "react";
 
-export const getMyPosition = ( setLatitude: Dispatch<SetStateAction<number | null>>, setLongitude: Dispatch<SetStateAction<number | null>>, setPointError: Dispatch<SetStateAction<string | null>> ) => {
+export const getMyPosition = ( setLatitude: Dispatch<SetStateAction<number | null>>, setLongitude: Dispatch<SetStateAction<number | null>>, positionError: string | null, setPositionError: Dispatch<SetStateAction<string | null>> ) => {
 
   // navigator.geolocation: ブラウザのAPI
   if (navigator.geolocation) {
@@ -13,12 +13,12 @@ export const getMyPosition = ( setLatitude: Dispatch<SetStateAction<number | nul
         // 数値に対して小数点以下の桁数を指定して、数値を文字列に変換
         setLatitude(parseFloat(position.coords.latitude.toFixed(14)));
         setLongitude(parseFloat(position.coords.longitude.toFixed(14)));
-        setPointError(null);
+        setPositionError(null);
       },
 
       // 取得できなかった時
       (err) => {
-        setPointError("現在地を取得できませんでした。エラーコード: " + err.code);
+        setPositionError("現在地を取得できませんでした。エラーコード: " + err.code);
         setLatitude(null);
         setLongitude(null);
       },
@@ -30,6 +30,8 @@ export const getMyPosition = ( setLatitude: Dispatch<SetStateAction<number | nul
 
   // APIがサポートされていないブラウザの場合
   else {
-    setPointError(" このブラウザは位置情報取得をサポートしていません。");
+    setPositionError(" このブラウザは位置情報取得をサポートしていません。");
   }
+
+  if (positionError) console.log(positionError);
 };
