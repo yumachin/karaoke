@@ -46,8 +46,8 @@ const StoreList: React.FC<StoreListProps> = ({ hours,
 
 	const userLocation = {latitude, longitude};
 
-	// 画面幅が1050px以上の場合にisPcをtrueに
-  const isPc = useMediaQuery('(min-width: 1050px)');
+	// 画面幅が1200px以上の場合にisPcをtrueに
+  const isPc = useMediaQuery('(min-width: 1200px)');
 
   // コレクションの確定
   useEffect(() => {
@@ -246,7 +246,7 @@ const StoreList: React.FC<StoreListProps> = ({ hours,
 
 				<>
 					{/* 上部スペース(Header用) */}
-						<Box sx={{ pb: '8vh' }}></Box>    
+						<Box sx={{ pb: {xs: '6.3vh', lg: '8vh'} }}></Box>    
 					{/* 上部スペース(Header用) */}
 
 					{/*件数表示*/}

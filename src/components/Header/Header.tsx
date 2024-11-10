@@ -46,18 +46,17 @@ const Header: React.FC<HeaderProps> = ({ rangeOpen, setRangeOpen, range, setRang
   return (
     <Box 
       position='fixed'
-      top='0'
       width='100%'
       display="flex" 
-      alignItems='center' 
       justifyContent='center' 
       zIndex={100}
       sx={{
         backgroundColor: 'rgb(127, 80, 255)',
-        color: 'white'
+        color: 'white',
+        alignItems: { lg: 'center' }
       }}
     >
-      <Typography variant="body1" sx={{ fontFamily: "Reggae One", p: '2.3vh' }}>
+      <Typography variant="body1" sx={{ fontFamily: "Reggae One", px: '2.3vh', pt: {xs: '1vh', lg: '2.3vh'}, pb: {xs: '1.5vh', lg: '2.3vh'} }}>
         自身の周辺
       </Typography>
       <Typography 
@@ -68,14 +67,16 @@ const Header: React.FC<HeaderProps> = ({ rangeOpen, setRangeOpen, range, setRang
             fontFamily: 'Reggae One',
             transition: '0.3s',
             cursor: 'pointer',
-            pl: '0.7',
+            pl: '0.7vh',
+            pt: {xs: '0.4vh', lg: '0vh'},
+            pb: {xs: '2.5vh', lg: '0vh'},
             '&:hover': { color: 'rgb(50, 227, 240)' }
         }}
         onClick={handleClick}
       >
         {strRange}
       </Typography>
-      <Typography variant="body1" sx={{ fontFamily: "Reggae One", p: '3vh' }}>
+      <Typography variant="body1" sx={{ fontFamily: "Reggae One", px: '3vh', pt: {xs: '1vh', lg: '3vh'}, pb: {xs: '1.5vh', lg: '3vh'} }}>
         の検索結果
       </Typography>
       <Menu
