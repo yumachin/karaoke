@@ -108,6 +108,7 @@ const StoreList: React.FC<StoreListProps> = ({ hours,
 	// 店舗リストの作成
   useEffect(() => {
     const getData = async () => {
+			// 店舗取得が終了するまではローディング表示
 			setLoading(true);
 
 			// 全店舗取得
@@ -233,6 +234,7 @@ const StoreList: React.FC<StoreListProps> = ({ hours,
 
   return (
 		<>
+			{/* ローディング */}
 			{loading ? (
 				<Stack sx={{ display: 'flex', justifyContent: 'center', alignItems: 'center', flexDirection: 'column' }} spacing={10}>
 					<Box sx={{ pb: '20vh' }}></Box>    
@@ -240,6 +242,8 @@ const StoreList: React.FC<StoreListProps> = ({ hours,
 					<CircularProgress size={120} color='secondary'/>
 				</Stack>
 				) : (
+		//{/* ローディング */}
+
 				<>
 					{/* 上部スペース(Header用) */}
 						<Box sx={{ pb: '8vh' }}></Box>    
